@@ -1,0 +1,6 @@
+{
+  "checks": [
+    {"name": "Example",  "url": "https://example.com", "interval": 60, "timeout": 5},
+    {"name": "My API",   "url": "https://api.example.com/health", "interval": 30}
+  ]
+}
