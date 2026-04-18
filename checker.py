@@ -52,29 +52,23 @@ def main():
     alert_mgr = AlertManager(alerters)
 
     if args.once:
-        print(f"
-Running checks — {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}
-")
+        print(f"\nRunning checks -- {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\n")
         results = run_checks(config, alert_mgr)
         hist_append(results)
         up   = sum(1 for r in results if r["status"] == "up")
         down = len(results) - up
-        print(f"
-  {up} up  {down} down")
+        print(f"\n  {up} up  {down} down")
         sys.exit(0 if down == 0 else 1)
 
-    print(f"Monitoring {len(config['checks'])} endpoint(s) every {args.interval}s. Ctrl+C to stop.
-")
+    print(f"Monitoring {len(config['checks'])} endpoint(s) every {args.interval}s. Ctrl+C to stop.\n")
     try:
         while True:
-            print(f"
--- {datetime.now().strftime('%H:%M:%S')} --")
+            print(f"\n-- {datetime.now().strftime('%H:%M:%S')} --")
             results = run_checks(config, alert_mgr)
             hist_append(results)
             time.sleep(args.interval)
     except KeyboardInterrupt:
-        print("
-Stopped.")
+        print("\nStopped.")
 
 
 if __name__ == "__main__":
