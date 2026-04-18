@@ -38,8 +38,7 @@ def uptime_stats(name: str, hours: int = 24) -> dict:
 def summary_table(hours: int = 24):
     history = load()
     names   = sorted({e["name"] for e in history})
-    print(f" Uptime summary (last {hours}h)
-")
+    print(f"\n  Uptime summary (last {hours}h)\n")
     print(f"  {'Name':<28} {'Uptime':>7}  {'Avg ms':>7}  {'Checks':>7}")
     print("  " + "-" * 55)
     for name in names:
